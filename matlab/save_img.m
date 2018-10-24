@@ -1,16 +1,16 @@
-function [fname] = save_img(params, img_info, r, c, dir)
+function [fname] = save_img(params, r, c, H, W, dir)
     d = params.d;
     
     fname = '';
-    if(r < 1 || r + d > img_info.Height)
+    if(r < 1 || r + d > H)
         return;
     end
-    if(c < 1 || c + d > img_info.Width)
+    if(c < 1 || c + d > W)
         return;
     end
     
     % read in portion of image
-    A = imread(img_info.Filename, 'PixelRegion', {[r, r + d], [c, c + d]});
+    A = imread(params.filename, 'PixelRegion', {[r, r + d], [c, c + d]});
     fname = sprintf('%s%d_%d.jpg', dir, r, c);
 
     if(isfield(params, 'resize'))

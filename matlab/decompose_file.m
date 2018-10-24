@@ -1,4 +1,4 @@
-function [dir] = decompose_file(params, r0, c0)
+function [dir] = decompose_file(params)
     % required params
     filename = params.filename;
     n = params.n;
@@ -24,7 +24,7 @@ function [dir] = decompose_file(params, r0, c0)
     
     % get file info
     info = imfinfo(filename);
-    img_info = info(1);
+    img_info = info(1)
     
     % create output directory
     [path, file] = fileparts(img_info.Filename);
@@ -34,7 +34,9 @@ function [dir] = decompose_file(params, r0, c0)
     % save images
     for r = r_begin:d:r_end
         for c = c_begin:d:c_end
-            save_img(params, img_info, r, c, dir);
+            if(strcmp(save_img(params, r, c, img_info.Height, img_info.Width, dir), ''))
+                fprintf('Failed: r=%d, c=%d\n', r, c);
+            end
         end
     end
 end
