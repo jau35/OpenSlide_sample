@@ -24,6 +24,6 @@ with open_slide(args.file) as slide:
     lvl_down = slide.level_downsamples
 
     print(type(slide))
-    img = slide.read_region((0,0), 1, (100, 100))
-    img = img.convert('RGB')
-    img.save('tmp.jpg')
+    img = slide.read_region((30300,42100), 1, (31300, 43100))
+	#img = img.convert('RGB')
+    img.save('tmp.png')
